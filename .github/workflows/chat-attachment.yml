@@ -1,0 +1,25 @@
+name: Chat attachment bridge
+
+on:
+  push:
+    paths:
+      - .github/workflows/chat-attachment.yml
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download verified APK release asset
+        run: |
+          curl -L --fail --retry 3 \
+            -o WiDAR-Lens-v0.3-Echo-Sweep.apk \
+            https://github.com/TannerPhillps-ThreatHunter/WiDAR-Lens-Releases/releases/download/v0.3/app-debug.apk
+          echo 'e76ec8130992f6227534749baff4cfcf55c00140fe34f84049c27d3e2eebe3dc  WiDAR-Lens-v0.3-Echo-Sweep.apk' | sha256sum -c -
+      - name: Upload APK as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WiDAR-Lens-v0.3-Echo-Sweep
+          path: WiDAR-Lens-v0.3-Echo-Sweep.apk
+          if-no-files-found: error
+          retention-days: 7
