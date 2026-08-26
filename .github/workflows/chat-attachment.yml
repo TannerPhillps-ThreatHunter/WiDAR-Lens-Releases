@@ -13,14 +13,13 @@ jobs:
       - name: Download verified APK release asset
         run: |
           curl -L --fail --retry 3 \
-            -o WiDAR-Lens-v0.3-Echo-Sweep.apk \
-            https://github.com/TannerPhillps-ThreatHunter/WiDAR-Lens-Releases/releases/download/v0.3/app-debug.apk
-          echo 'e76ec8130992f6227534749baff4cfcf55c00140fe34f84049c27d3e2eebe3dc  WiDAR-Lens-v0.3-Echo-Sweep.apk' | sha256sum -c -
+            -o WiDAR-Lens-v0.4-Spatial-Evidence.apk \
+            https://github.com/TannerPhillps-ThreatHunter/WiDAR-Lens-Releases/releases/download/v0.4/WiDAR-Lens-v0.4-Spatial-Evidence.apk
+          echo '10619f3e80bd43e977a6d6ce4491dce2ba50d344a0391958e57261a142e5ee49  WiDAR-Lens-v0.4-Spatial-Evidence.apk' | sha256sum -c -
       - name: Upload APK as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: WiDAR-Lens-v0.3-Echo-Sweep
-          path: WiDAR-Lens-v0.3-Echo-Sweep.apk
+          name: WiDAR-Lens-v0.4-Spatial-Evidence
+          path: WiDAR-Lens-v0.4-Spatial-Evidence.apk
           if-no-files-found: error
           retention-days: 7
-# trigger bridge
